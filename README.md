@@ -24,6 +24,7 @@ Sample payload:
 ```json
 {
      "from": "%from%",
+     "fromName": "%fromName%",
      "text": "%text%",
      "sentStamp": "%sentStamp%",
      "receivedStamp": "%receivedStamp%",
@@ -33,6 +34,7 @@ Sample payload:
 
 Available placeholders:
 %from%
+%fromName%
 %text%
 %sentStamp%
 %receivedStamp%
