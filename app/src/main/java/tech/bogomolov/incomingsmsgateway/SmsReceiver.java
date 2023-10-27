@@ -25,6 +25,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 
+import org.json.JSONObject;
 import org.apache.commons.text.StringEscapeUtils;
 
 public class SmsReceiver extends BroadcastReceiver {
@@ -83,6 +84,11 @@ public class SmsReceiver extends BroadcastReceiver {
         if (matchedConfig == null) {
             return;
         }
+
+        // Use org.json.JSONObject.quote to properly escape the message string
+        // then remove the quotes it prepends/appends to the string
+        String escapedMessageText = JSONObject.quote(content.toString());
+        escapedMessageText = escapedMessageText.substring(1, escapedMessageText.length() - 1);
 
         String messageContent = matchedConfig.getTemplate()
                 .replaceAll("%from%", senderPhoneNumber)
