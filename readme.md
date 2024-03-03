@@ -24,8 +24,10 @@ Upload files sms/
 - `config.php` - confugure
 - `my_css.css`
 - `sms_messages.sql` - for create db
+- `login.php` - !session_start
 
 ### Password
+add `index.php`
 ```php
  <?php
 session_start();
