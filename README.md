@@ -26,10 +26,10 @@ sms_messages.sql
 3. Every incoming SMS will be sent immediately to the provided URL.
 
 > [!NOTE]
-> If the response code is not 2XX or the request ended with a connection error, the app will try to send again up to 10 times.
->Minimum first retry will be after 10 seconds, later wait time will increase exponentially.
->If the phone is not connected to the internet, the app will wait for the connection before the next attempt.
->If at least one Forwarding config is created and all needed permissions granted - you should see F icon in the status bar, means the app is listening for the SMS.
+> - If the response code is not 2XX or the request ended with a connection error, the app will try to send again up to 10 times.
+> Minimum first retry will be after 10 seconds, later wait time will increase exponentially.
+> If the phone is not connected to the internet, the app will wait for the connection before the next attempt.
+>- If at least one Forwarding config is created and all needed permissions granted - you should see F icon in the status bar, means the app is listening for the SMS.
 
 ### Request info
 HTTP method: POST  
