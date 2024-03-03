@@ -11,3 +11,11 @@ CREATE TABLE `sms_messages` (
 
 INSERT INTO `sms_messages` (`id`, `from`, `fromName`, `text`, `sent_stamp`, `received_stamp`, `sim`) VALUES
 (20, '+420123456789', 'Jméno', 'zpráva', '2024-03-02 22:20:44', '2024-03-02 22:20:44', 'sim1');
+
+
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user VARCHAR(255) NOT NULL,
+    pass VARCHAR(255) NOT NULL
+);
