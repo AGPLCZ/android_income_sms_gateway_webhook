@@ -11,13 +11,14 @@ CREATE TABLE `sms_messages`
 MYSQL -> Run SQL query(s) -> sms_messages.sql
 
 ### PHP files
+upload files sms/
 index.php
 sms.php
 config.php
+sms_messages.sql
 
 ## How to use APP
-1. Set sender phone number or name
-- If you want to send any SMS to URL, use * (asterisk symbol) as a name
+1. Set sender phone "number" or "name" or any SMS use "*"
 2. URL https://page.com/sms/sms.php
 3. Every incoming SMS will be sent immediately to the provided URL.
 
