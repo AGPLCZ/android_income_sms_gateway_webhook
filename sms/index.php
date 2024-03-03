@@ -3,9 +3,6 @@ require_once "config.php";
 ini_set("display_errors", 1);
 error_reporting(E_ERROR | E_WARNING);
 
-
-
-
 // smazat konkrétní sms
 if (isset($_POST['delete_one'])) {
     $id_del = filter_input(INPUT_POST, 'id_del', FILTER_SANITIZE_NUMBER_INT);
@@ -14,9 +11,6 @@ if (isset($_POST['delete_one'])) {
     $stmt->bind_param('i', $id_del);
     $stmt->execute();
 }
-
-
-
 
 $sql = "SELECT `id`, `from`, `fromName`, `text`, sent_stamp, received_stamp, sim FROM sms_messages ORDER BY received_stamp DESC";
 $result = $conn->query($sql);
@@ -38,11 +32,24 @@ $mesice = [
 
 $messages = [];
 while ($row = $result->fetch_assoc()) {
+
+    //$firstLetter = strtolower(substr($row['fromName'], 0, 1)); // Získání prvního písmene a převod na malé
+    //$firstLetter = iconv('UTF-8', 'ASCII//TRANSLIT', $firstLetter); // Odstranění diakritiky
+    //$imageFile = "images/{$firstLetter}.png";   //cesta
+
+    $from = 'áčďéěíňóřšťúůýžÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ';
+    $to = 'acdeeinorstuuyzacdeeinorstuuyz';
+    $firstLetter = strtolower(substr($row['fromName'], 0, 1));
+    $firstLetter = strtr($firstLetter, $from, $to);
+    $imageFile = "images/{$firstLetter}.png";
+
+
     $sentStamp = DateTime::createFromFormat('Y-m-d H:i:s', $row['sent_stamp']);
     $receivedStamp = DateTime::createFromFormat('Y-m-d H:i:s', $row['received_stamp']);
 
     $formattedSentStamp = $sentStamp->format('j') . '.' . $mesice[(int)$sentStamp->format('n')] . ' ' . $sentStamp->format('Y H:i');
     $formattedReceivedStamp = $receivedStamp->format('j') . '.' . $mesice[(int)$receivedStamp->format('n')] . ' ' . $receivedStamp->format('Y H:i');
+
 
     // Přidání formátovaných dat do pole
     $messages[] = [
@@ -52,9 +59,16 @@ while ($row = $result->fetch_assoc()) {
         'sent' => $formattedSentStamp,
         'received' => $formattedReceivedStamp,
         'text' => $row['text'],
-        'sim' => $row['sim']
+        'sim' => $row['sim'],
+        'imageFile' => $imageFile
     ];
 }
+
+
+
+
+
+
 
 if (isset($_POST['delete'])) {
     $sql = "TRUNCATE TABLE sms_messages";
@@ -103,31 +117,31 @@ if (isset($_POST['delete'])) {
                             <ul>
                                 <?php foreach ($messages as $message) : ?>
                                     <li>
-                                       
-                                            <div class="message-avatar">
-                                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt>
+
+                                        <div class="message-avatar">
+                                            <img src="<?= htmlspecialchars($message['imageFile']) ?>" alt="">
+                                        </div>
+                                        <div class="message-body">
+                                            <div class="message-body-heading">
+                                                <h5><?= htmlspecialchars($message['fromName']) ?></h5>
+                                                <span><?= htmlspecialchars($message['received']) ?>
+                                                    <?php htmlspecialchars($message['sent']) ?></span>
                                             </div>
-                                            <div class="message-body">
-                                                <div class="message-body-heading">
-                                                    <h5><?= htmlspecialchars($message['fromName']) ?></h5>
-                                                    <span><?= htmlspecialchars($message['received']) ?>
-                                                        <?php htmlspecialchars($message['sent']) ?></span>
-                                                </div>
-                                                <h5><span class="unread"><?= htmlspecialchars($message['sim']) ?></span><span class="pending"><?= htmlspecialchars($message['from']) ?></span>
+                                            <h5><span class="unread"><?= htmlspecialchars($message['sim']) ?></span><span class="pending"><?= htmlspecialchars($message['from']) ?></span>
 
 
-                                                </h5>
+                                            </h5>
 
-                                                <p><?= htmlspecialchars($message['text']) ?></p>
+                                            <p><?= htmlspecialchars($message['text']) ?></p>
 
 
-                                                <form action="index.php" method="post">
-                                                    <input type="hidden" name="id_del" value="<?php echo htmlspecialchars($message['id']) ?>">
-                                                    <button type="submit" class="btn btn-danger btn-sm" name="delete_one">Smazat sms</button>
-                                                </form>
+                                            <form action="index.php" method="post">
+                                                <input type="hidden" name="id_del" value="<?php echo htmlspecialchars($message['id']) ?>">
+                                                <button type="submit" class="btn btn-danger btn-sm" name="delete_one">Smazat sms</button>
+                                            </form>
 
-                                            </div>
-                                        
+                                        </div>
+
 
                                     </li>
                                 <?php endforeach; ?>
@@ -149,8 +163,6 @@ if (isset($_POST['delete'])) {
         </div>
     </div>
 
-
-    </script>
 </body>
 
 </html>
