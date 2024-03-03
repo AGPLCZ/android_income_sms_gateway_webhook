@@ -26,11 +26,13 @@ Upload files sms/
 - `sms_messages.sql` - for create db
 
 ### Password
-` <?php
+```php
+ <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
-}`
+}
+```
 
 
 ## How to use APP
