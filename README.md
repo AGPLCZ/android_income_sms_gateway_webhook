@@ -7,15 +7,8 @@ Set the config
 $conn = new mysqli("server", "username", "pass", "database_name");
 
 ### Create database tables
-CREATE TABLE `sms_messages` (
-  `id` INT AUTO_INCREMENT PRIMARY KEY,
-  `from` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `fromName` varchar(255)  COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `text` text COLLATE utf8mb4_general_ci,
-  `sent_stamp` datetime DEFAULT NULL,
-  `received_stamp` datetime DEFAULT NULL,
-  `sim` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `sms_messages`
+MYSQL -> Run SQL query(s) -> sms_messages.sql
 
 ### PHP files
 index.php
