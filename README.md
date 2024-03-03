@@ -15,7 +15,7 @@ MYSQL -> Run SQL query(s) -> sms_messages.sql
 
 ### PHP files SMS
 Upload files sms/
-- index.php - GUI
+- `index.php` - GUI
 - sms.php - master
 - config.php - confugure
 - my_css.css
