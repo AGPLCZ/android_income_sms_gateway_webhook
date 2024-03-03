@@ -12,8 +12,18 @@ if (isset($_POST['delete_one'])) {
     $stmt->execute();
 }
 
-$sql = "SELECT `id`, `from`, `fromName`, `text`, sent_stamp, received_stamp, sim FROM sms_messages ORDER BY received_stamp DESC";
-$result = $conn->query($sql);
+$number = isset($_GET['number']) ? $_GET['number'] : null;
+if ($number) {
+    $sql = "SELECT `id`, `from`, `fromName`, `text`, sent_stamp, received_stamp, sim FROM sms_messages WHERE `from` = ? ORDER BY received_stamp DESC";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $number);
+    $stmt->execute();
+    $result = $stmt->get_result();
+} else {
+    $sql = "SELECT `id`, `from`, `fromName`, `text`, sent_stamp, received_stamp, sim FROM sms_messages ORDER BY received_stamp DESC";
+    $result = $conn->query($sql);
+}
+
 
 
 $mesice = [
@@ -64,12 +74,6 @@ while ($row = $result->fetch_assoc()) {
     ];
 }
 
-
-
-
-
-
-
 if (isset($_POST['delete'])) {
     $sql = "TRUNCATE TABLE sms_messages";
     $conn->query($sql);
@@ -77,9 +81,7 @@ if (isset($_POST['delete'])) {
     header("Location: index.php");
 }
 
-
 ?>
-
 
 
 <!DOCTYPE html>
@@ -108,7 +110,7 @@ if (isset($_POST['delete'])) {
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
 
-                                    <a href="index.php" class="btn btn-primary">Aktualizovat stránku</a>
+                                    <a href="index.php" class="btn btn-primary">Page Refresh</a>
                                 </div>
 
                             </div>
@@ -127,7 +129,7 @@ if (isset($_POST['delete'])) {
                                                 <span><?= htmlspecialchars($message['received']) ?>
                                                     <?php htmlspecialchars($message['sent']) ?></span>
                                             </div>
-                                            <h5><span class="unread"><?= htmlspecialchars($message['sim']) ?></span><span class="pending"><?= htmlspecialchars($message['from']) ?></span>
+                                            <h5><span class="unread"><?= htmlspecialchars($message['sim']) ?></span><span class="pending"><a href="?number=<?= htmlspecialchars($message['from']) ?>" class="text-white"><?= htmlspecialchars($message['from']) ?></a></span>
 
 
                                             </h5>
@@ -137,7 +139,7 @@ if (isset($_POST['delete'])) {
 
                                             <form action="index.php" method="post">
                                                 <input type="hidden" name="id_del" value="<?php echo htmlspecialchars($message['id']) ?>">
-                                                <button type="submit" class="btn btn-danger btn-sm" name="delete_one">Smazat sms</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" name="delete_one">Delete</button>
                                             </form>
 
                                         </div>
@@ -151,7 +153,7 @@ if (isset($_POST['delete'])) {
                             <div class="col-md-6 col-sm-6 mt-3">
                                 <form method="post">
 
-                                    <button type="submit" class="btn btn-danger" name="delete">Smazat všechny sms</button>
+                                    <button type="submit" class="btn btn-danger" name="delete">Delete all sms messages</button>
                                 </form>
                             </div>
                         </div>
