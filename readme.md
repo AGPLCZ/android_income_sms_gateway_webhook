@@ -1,5 +1,5 @@
 # Incoming SMS to URL forwarder
-Upload SMS messages to your database, and view the messages on the web page.
+Upload SMS messages to your database, and view the messages on the web page. And add to https://ntfy.sh/
 
 
 <img src="screen.png" width="30%"/><img alt="screenshot" src="screen_app.png" width="30%"/>
