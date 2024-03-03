@@ -1,6 +1,9 @@
 # Incoming SMS to URL forwarder
 Upload SMS messages to your database, and view the messages on the web page.
 
+> [!IMPORTANT]  
+> Version 2.2.4  new -> "fromName": "%fromName%",
+> Version 2.2.3 -> apk from fdroid is not compatible with PHP files
 
 ## How to use APP SMS PHP - config.php
 Set the config
@@ -22,11 +25,11 @@ sms_messages.sql
 2. URL https://yourpage.com/sms/sms.php
 3. Every incoming SMS will be sent immediately to the provided URL.
 
-If the response code is not 2XX or the request ended with a connection error, the app will try to send again up to 10 times.
-Minimum first retry will be after 10 seconds, later wait time will increase exponentially.
-If the phone is not connected to the internet, the app will wait for the connection before the next attempt.
-
-If at least one Forwarding config is created and all needed permissions granted - you should see F icon in the status bar, means the app is listening for the SMS.
+> [!NOTE]
+> If the response code is not 2XX or the request ended with a connection error, the app will try to send again up to 10 times.
+>Minimum first retry will be after 10 seconds, later wait time will increase exponentially.
+>If the phone is not connected to the internet, the app will wait for the connection before the next attempt.
+>If at least one Forwarding config is created and all needed permissions granted - you should see F icon in the status bar, means the app is listening for the SMS.
 
 ### Request info
 HTTP method: POST  
