@@ -21,3 +21,17 @@ $stmt->execute();
 $stmt->close();
 
 $conn->close();
+
+// Sestavení obsahu zprávy
+$content = "From: $from, Name: " . $decoded['fromName'] . ", Text: " . $decoded['text'] . ", Sent: $sentStamp, Received: $receivedStamp, SIM: " . $decoded['sim'];
+
+// Odeslání upozornění pomocí ntfy
+$context = stream_context_create([
+    'http' => [
+        'method' => 'POST',
+        'header' => "Content-Type: text/plain\r\n",
+        'content' => $content
+    ]
+]);
+
+file_get_contents('https://ntfy.sh/xxxxxxxxxxxxxxxxxxx', false, $context);
