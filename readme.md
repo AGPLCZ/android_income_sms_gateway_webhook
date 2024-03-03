@@ -25,6 +25,13 @@ Upload files sms/
 - `my_css.css`
 - `sms_messages.sql` - for create db
 
+### Password
+ <?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+}
+
 ## How to use APP
 1. Set sender phone "number" or "name" or any SMS use "*"
 2. URL https://yourpage.com/sms/sms.php
