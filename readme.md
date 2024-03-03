@@ -1,7 +1,9 @@
 # Incoming SMS to URL forwarder
 Upload SMS messages to your database, and view the messages on the web page.
 
-<img src="screen.png" width="30%" height="30%">
+
+<img src="screen.png" width="30%"/> <img alt="Incoming SMS Webhook Gateway screenshot 2" src="https://raw.githubusercontent.com/bogkonstantin/android_income_sms_gateway_webhook/master/fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" width="30%"/> <img alt="Incoming SMS Webhook Gateway screenshot 3" src="https://raw.githubusercontent.com/bogkonstantin/android_income_sms_gateway_webhook/master/fastlane/metadata/android/en-US/images/phoneScreenshots/3.png" width="30%"/>
+
 
 > [!IMPORTANT]  
 > - Version 2.2.4  new -> "fromName": "%fromName%",
