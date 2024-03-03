@@ -26,11 +26,12 @@ Upload files sms/
 - `sms_messages.sql` - for create db
 
 ### Password
- <?php
+` <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
-}
+}`
+
 
 ## How to use APP
 1. Set sender phone "number" or "name" or any SMS use "*"
