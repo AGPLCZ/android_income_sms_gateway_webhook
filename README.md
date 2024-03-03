@@ -16,10 +16,10 @@ MYSQL -> Run SQL query(s) -> sms_messages.sql
 ### PHP files SMS
 Upload files sms/
 - `index.php` - GUI
-- sms.php - master
-- config.php - confugure
-- my_css.css
-- sms_messages.sql - for create db
+- `sms.php` - master
+- `config.php` - confugure
+- `my_css.css`
+- `sms_messages.sql` - for create db
 
 ## How to use APP
 1. Set sender phone "number" or "name" or any SMS use "*"
