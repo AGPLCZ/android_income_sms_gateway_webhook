@@ -27,7 +27,7 @@ Upload files sms/
 - `login.php` - !session_start
 
 ### Password
-add `index.php`
+add to `index.php`
 ```php
  <?php
 session_start();
