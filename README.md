@@ -72,7 +72,7 @@ $decoded = json_decode($payload, true);
 
 ## Download apk
 
-Download apk from [release page](https://github.com/bogkonstantin/android_income_sms_gateway_webhook/releases)
+Download apk from [release page](https://github.com/scottmconway/android_income_sms_gateway_webhook/releases)
 
 Or download it from F-Droid
 
