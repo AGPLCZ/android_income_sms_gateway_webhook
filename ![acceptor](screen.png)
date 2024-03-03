@@ -2,6 +2,7 @@
 Upload SMS messages to your database, and view the messages on the web page.
 
 ![acceptor](screen.png)
+<img src="screen.png" width="30" height="30">
 
 > [!IMPORTANT]  
 > - Version 2.2.4  new -> "fromName": "%fromName%",
