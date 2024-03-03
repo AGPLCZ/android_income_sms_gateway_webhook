@@ -19,7 +19,7 @@ sms_messages.sql
 
 ## How to use APP
 1. Set sender phone "number" or "name" or any SMS use "*"
-2. URL https://page.com/sms/sms.php
+2. URL https://yourpage.com/sms/sms.php
 3. Every incoming SMS will be sent immediately to the provided URL.
 
 If the response code is not 2XX or the request ended with a connection error, the app will try to send again up to 10 times.
