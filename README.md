@@ -1,6 +1,8 @@
 # Incoming SMS to URL forwarder
 Upload SMS messages to your database, and view the messages on the web page.
 
+![acceptor](screen.png)
+
 > [!IMPORTANT]  
 > - Version 2.2.4  new -> "fromName": "%fromName%",
 > - Version 2.2.3 -> apk from fdroid is not compatible with PHP files
